@@ -2,107 +2,88 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class BuildManager : MonoBehaviour
-{
+public class BuildManager : MonoBehaviour {
     public static BuildManager Instance { get; private set; }
 
-    public TurretData standardTurretData;
-    public TurretData missileTurretData;
-    public TurretData laserTurretData;
-
-    public TurretData selectedTurretData;
+    [SerializeField] private BuildingDataBase towers;
 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI currentWave;
     private Animator moneyTextAnim;
+    public UpgradeUI upgradeUI;
+    public DeleteUI deleteUI;
+
     private int money = 1000;
     private int wave = 1;
-    public UpgradeUI upgradeUI;
-    private MapCube upgradeCube;
+    private MapCube activeCube;
+    private BuildingData selectedBuilding;
 
-    
-    private void Awake()
-    {
+    private void Awake() {
         Instance = this;
         moneyTextAnim = moneyText.GetComponent<Animator>();
     }
 
-
-    public void OnStandardSelected(bool isOn)
-    {
-        if (isOn)
-        {
-            selectedTurretData = standardTurretData;
-        }
-    }
-    public void OnMissileSelected(bool isOn)
-    {
-        if (isOn)
-        {
-            selectedTurretData = missileTurretData;
-        }
-    }
-    public void OnLaserSelected(bool isOn)
-    {
-        if (isOn)
-        {
-            selectedTurretData = laserTurretData;
-        }
+    public BuildingData CurrentBuilding() {
+        return selectedBuilding;
     }
 
-    public bool IsEnough(int need)
-    {
-        if (need <= money)
-        {
+    public void OnTowerSelected(int towerId) {
+        var i = towers.buildings.FindIndex(data => data.id == towerId);
+        if (i > -1) {
+            selectedBuilding = towers.buildings[i];
+        }
+        else
+            throw new System.Exception($"No object with ID {towerId}");
+    }
+
+    public bool IsEnough(int need) {
+        if (need <= money) {
             return true;
         }
-        else
-        {
-            MoneyFlicker();
-            return false;
-        }
+
+        MoneyFlicker();
+        return false;
     }
-    public void ChangeMoney(int value)
-    {
-        this.money += value;
-        moneyText.text = "$"+money.ToString();
+
+    public void ChangeMoney(int value) {
+        money += value;
+        moneyText.text = "$" + money;
     }
-    private void MoneyFlicker()
-    {
+
+    private void MoneyFlicker() {
         moneyTextAnim.SetTrigger("flicker");
     }
-    public void ChangeWave(int value)
-    {
-        this.wave = value;
 
-        if (currentWave != null)
-        {
-            currentWave.text = "current wave is: " + wave.ToString();
+    public void ChangeWave(int value) {
+        wave = value;
+
+        if (currentWave) {
+            currentWave.text = "current wave is: " + wave;
         }
-        else
-        {
+        else {
             Debug.LogError("currentWave reference is null! Make sure to assign it in the inspector.");
         }
     }
-    public void ShowUpgradeUI(MapCube cube, Vector3 position,bool isDisableUpgrade)
-    {
-        upgradeCube = cube;
-        upgradeUI.Show(position, isDisableUpgrade);
-    }
-    public void HideUpgradeUI()
-    {
-        upgradeUI.Hide();
+
+    public void ShowUpgradeUI(MapCube cube, Vector3 position) {
+        activeCube = cube;
+        deleteUI.Hide();
+        upgradeUI.Show(position);
     }
 
-    public void OnTurretUpgrade()
-    {
-        upgradeCube?.OnTurretUpgrade();
-        HideUpgradeUI();
+    public void ShowDeleteUI(MapCube cube, Vector3 position) {
+        activeCube = cube;
+        upgradeUI.Hide();
+        deleteUI.Show(position);
     }
-    public void OnTurretDestroy()
-    {
-        upgradeCube?.OnTurretDestroy();
-        HideUpgradeUI();
+
+    public void OnTurretUpgrade() {
+        activeCube?.OnTurretUpgrade();
+    }
+
+    public void OnTurretDestroy() {
+        activeCube?.OnTurretDestroy();
     }
 }

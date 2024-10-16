@@ -499,3 +499,4 @@ MonoBehaviour:
   speed: 20
   hp: 100
   explosionPrefab: {fileID: 511233557589457572, guid: 642a7eff6b6bf8945a9329a74f9b88b3, type: 3}
+  rewardMoney: 50

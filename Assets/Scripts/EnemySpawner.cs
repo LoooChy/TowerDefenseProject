@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
             
             for(int i = 0; i < wave.count; i++)
             {
-                GameObject.Instantiate(wave.enemyPrefab,startPoint.position,Quaternion.identity);
+                Instantiate(wave.enemyPrefab,startPoint.position,Quaternion.identity);
                 enemyCount++;
                 if (i != wave.count - 1)
                 {
