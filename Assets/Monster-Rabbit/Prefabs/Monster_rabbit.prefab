@@ -646,8 +646,8 @@ GameObject:
   - component: {fileID: 473472}
   - component: {fileID: 9513648}
   - component: {fileID: 14359612}
-  - component: {fileID: 11485650}
   - component: {fileID: -5546605841756459902}
+  - component: {fileID: 5142177133592275281}
   m_Layer: 0
   m_Name: Monster_rabbit
   m_TagString: Enemy
@@ -663,8 +663,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129042}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65, y: -0.009, z: -1.9288183}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -64.94902, y: -0.009001613, z: -2.0470386}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -672,7 +672,7 @@ Transform:
   - {fileID: 470432}
   - {fileID: 474752}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!95 &9513648
 Animator:
   serializedVersion: 5
@@ -720,22 +720,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.86, z: 0}
---- !u!114 &11485650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129042}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c346b4fe69e1b45a52205c7ab92cf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  runSpeed: 1.7
-  turnSpeed: 100
-  gravity: 20
 --- !u!114 &-5546605841756459902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,6 +736,22 @@ MonoBehaviour:
   hp: 100
   explosionPrefab: {fileID: 0}
   rewardMoney: 50
+--- !u!114 &5142177133592275281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129042}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c346b4fe69e1b45a52205c7ab92cf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  runSpeed: 1.7
+  turnSpeed: 60
+  gravity: 20
 --- !u!1 &133718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,13 +1128,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158862}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0, y: 0.77, z: -5.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 473472}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!137 &13749242
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

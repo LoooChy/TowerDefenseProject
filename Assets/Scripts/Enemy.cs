@@ -17,25 +17,49 @@ public class Enemy : MonoBehaviour
 
     private Slider hpSlider;
     public int rewardMoney = 50;
+
+    private Transform modelTransform;
+    private Vector3 lastPosition;
+
     // Start is called before the first frame update
+
+
     void Start()
     {
         targetPosition = Waypoints.Instance.GetWaypoint(pointIndex);
         hpSlider = transform.Find("Canvas/HPSlider").GetComponent<Slider>();
         hpSlider.value = 1;
         maxHP = hp;
+        // 获取模型的Transform
+        modelTransform = transform;
+        // 如果模型是当前游戏对象的子对象，使用：
+        // modelTransform = transform.GetChild(0);
+
+        // lastPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+// 计算移动方向
+        Vector3 moveDirection = (targetPosition - transform.position).normalized;
+        
+        // 移动逻辑
+        transform.position += moveDirection * speed * Time.deltaTime;
 
-        transform.Translate((targetPosition - transform.position).normalized * speed * Time.deltaTime);
+        // 让模型面向移动方向
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            modelTransform.rotation = Quaternion.RotateTowards(modelTransform.rotation, toRotation, 720f * Time.deltaTime);
+        }
 
-        if( Vector3.Distance(transform.position,targetPosition)<0.1f)
+        // 检查是否到达目标点
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
             MoveNextPoint();
         }
+        
 
     }
 
@@ -48,6 +72,7 @@ public class Enemy : MonoBehaviour
             Die();return;
         }
         targetPosition = Waypoints.Instance.GetWaypoint(pointIndex);
+
     }
     void Die()
     {

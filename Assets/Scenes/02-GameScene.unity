@@ -16793,31 +16793,31 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 129042, guid: 5d4c66f0506f2a94e89ea43f740282bc, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 5371797250299101587, guid: f64d7d71004c22447a00e5a6e93a0540, type: 3}
+  - enemyPrefab: {fileID: 129042, guid: 5d4c66f0506f2a94e89ea43f740282bc, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 5371797250299101587, guid: f64d7d71004c22447a00e5a6e93a0540, type: 3}
+  - enemyPrefab: {fileID: 129042, guid: 5d4c66f0506f2a94e89ea43f740282bc, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 8688436529136959141, guid: a68b230fd449cb846943f13d4fb156ab, type: 3}
+  - enemyPrefab: {fileID: 135048, guid: bb20a31181b631c42a2256dc63fab447, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 8688436529136959141, guid: a68b230fd449cb846943f13d4fb156ab, type: 3}
+  - enemyPrefab: {fileID: 135048, guid: bb20a31181b631c42a2256dc63fab447, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 8688436529136959141, guid: a68b230fd449cb846943f13d4fb156ab, type: 3}
+  - enemyPrefab: {fileID: 135048, guid: bb20a31181b631c42a2256dc63fab447, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 4666160224358822973, guid: 5305ae13faa22b44c90bd9be8124537b, type: 3}
+  - enemyPrefab: {fileID: 136700, guid: 4d9f5b383580e32419acbe073deff85b, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 4666160224358822973, guid: 5305ae13faa22b44c90bd9be8124537b, type: 3}
+  - enemyPrefab: {fileID: 136700, guid: 4d9f5b383580e32419acbe073deff85b, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 4666160224358822973, guid: 5305ae13faa22b44c90bd9be8124537b, type: 3}
+  - enemyPrefab: {fileID: 136700, guid: 4d9f5b383580e32419acbe073deff85b, type: 3}
     count: 6
     rate: 1
-  - enemyPrefab: {fileID: 5122085592535205919, guid: ff54d50663774884291c64c09365bee1, type: 3}
+  - enemyPrefab: {fileID: 153964, guid: cd76dfe2da78fcb48a5ac9f0ccf74195, type: 3}
     count: 1
     rate: 1
 --- !u!114 &2004844383
