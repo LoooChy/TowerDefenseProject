@@ -501,7 +501,7 @@ MonoBehaviour:
   enemyList: []
   bulletPrefab: {fileID: 100000, guid: a7556b6e029796a4bb0198cf47f584cf, type: 3}
   bulletPosition: {fileID: 4433867673521353535}
-  attackRate: 1
+  attackRate: 0.8
   head: {fileID: 400000}
 --- !u!135 &1999230814514315994
 SphereCollider:
@@ -522,7 +522,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6
+  m_Radius: 7
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &3266099209950494502
 GameObject:

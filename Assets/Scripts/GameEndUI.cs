@@ -8,7 +8,6 @@ public class GameEndUI : MonoBehaviour
     private Animator anim;
     public TextMeshProUGUI messageText;
 
-    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();

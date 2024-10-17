@@ -9,7 +9,7 @@ public class Tower : MonoBehaviour {
     public GameObject bulletPrefab;
     public Transform bulletPosition;
     public float attackRate = 1;
-    private float nextAttackTime; // Time.time
+    private float nextAttackTime;
 
     public Transform head;
 
@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         Debug.Log("Trigger: " + other.tag);
-        
+
         if (other.CompareTag("Enemy")) {
             enemyList.Add(other.gameObject);
         }
@@ -32,7 +32,7 @@ public class Tower : MonoBehaviour {
         }
     }
 
-    protected virtual void Attack() {
+    protected void Attack() {
         if (enemyList == null || enemyList.Count == 0) return;
 
         if (Time.time > nextAttackTime) {
@@ -45,8 +45,8 @@ public class Tower : MonoBehaviour {
         }
     }
 
-    public Transform GetTarget() {
-        if (enemyList != null && enemyList.Count > 0 && enemyList[0]) {
+    private Transform GetTarget() {
+        if (enemyList is { Count: > 0 } && enemyList[0]) {
             return enemyList[0].transform;
         }
 
@@ -74,7 +74,7 @@ public class Tower : MonoBehaviour {
         if (!head) {
             return;
         }
-        
+
         Transform target = GetTarget();
         if (!target) return;
 

@@ -10,13 +10,11 @@ public class BuildManager : MonoBehaviour {
     [SerializeField] private BuildingDataBase towers;
 
     public TextMeshProUGUI moneyText;
-    public TextMeshProUGUI currentWave;
     private Animator moneyTextAnim;
     public UpgradeUI upgradeUI;
     public DeleteUI deleteUI;
 
     private int money = 1000;
-    private int wave = 1;
     private MapCube activeCube;
     private BuildingData selectedBuilding;
 
@@ -54,17 +52,6 @@ public class BuildManager : MonoBehaviour {
 
     private void MoneyFlicker() {
         moneyTextAnim.SetTrigger("flicker");
-    }
-
-    public void ChangeWave(int value) {
-        wave = value;
-
-        if (currentWave) {
-            currentWave.text = "current wave is: " + wave;
-        }
-        else {
-            Debug.LogError("currentWave reference is null! Make sure to assign it in the inspector.");
-        }
     }
 
     public void ShowUpgradeUI(MapCube cube, Vector3 position) {

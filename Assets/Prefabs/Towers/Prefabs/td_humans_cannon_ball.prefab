@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   speed: 20
-  bulletExplosionPrefab: {fileID: 0}
+  bulletExplosionPrefab: {fileID: 100010, guid: 87698b9d467306440a17655d9c528f3a, type: 3}
 --- !u!135 &3255700204377372099
 SphereCollider:
   m_ObjectHideFlags: 0

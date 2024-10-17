@@ -9,36 +9,37 @@ public class Bullet : MonoBehaviour {
     public GameObject bulletExplosionPrefab;
 
     private Transform target;
+    private Vector3 lastPosition;
 
     private void Update() {
-        if (!target) {
-            Dead();
-            return;
+        if (target) {
+            lastPosition = target.position;
         }
 
-        transform.LookAt(target.position);
+        transform.LookAt(lastPosition);
         transform.Translate(Vector3.forward * (speed * Time.deltaTime));
-        if (Vector3.Distance(transform.position, target.position) < 1.2) {
+        if (Vector3.Distance(transform.position, lastPosition) < 1.2) {
+            if (target) {
+                target.GetComponent<Enemy>().TakeDamage(damage);    
+            }
             Dead();
-            target.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
 
-    public void SetTarget(Transform _target) {
-        target = _target;
+    public void SetTarget(Transform value) {
+        if (!value) {
+            Destroy(gameObject);
+        }
+        
+        target = value;
+        lastPosition = value.position;
     }
 
     private void Dead() {
         Destroy(gameObject);
-        if (!bulletExplosionPrefab) {
-            return;
-        }
-        
-        GameObject go = Instantiate(bulletExplosionPrefab, transform.position, Quaternion.identity);
-        Destroy(go, 1);
-
-        if (target) {
-            go.transform.parent = target.transform;
+        if (bulletExplosionPrefab) {
+            GameObject go = Instantiate(bulletExplosionPrefab, transform.position, Quaternion.identity);
+            Destroy(go, 1);
         }
     }
 }

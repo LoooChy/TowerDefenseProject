@@ -216,7 +216,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4077914333069088430
 MonoBehaviour:
@@ -233,6 +233,7 @@ MonoBehaviour:
   speed: 20
   hp: 300
   explosionPrefab: {fileID: 511233557589457572, guid: 8baa34b2dee6d7047b7605908c3b2214, type: 3}
+  rewardMoney: 50
 --- !u!1 &5461140767844723137
 GameObject:
   m_ObjectHideFlags: 0

@@ -522,7 +522,7 @@ MonoBehaviour:
   enemyList: []
   bulletPrefab: {fileID: 100000, guid: 3e234e347499cd540949e43bae856b20, type: 3}
   bulletPosition: {fileID: 7920791393361848720}
-  attackRate: 1
+  attackRate: 1.2
   head: {fileID: 400002}
 --- !u!1 &8851361600612816337
 GameObject:
