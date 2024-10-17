@@ -18,11 +18,11 @@ public class GameManager : MonoBehaviour
     public void Fail()
     {
         EnemySpawner.Instance.StopSpawn();
-        gameEndUI.Show("Ê§ °Ü");
+        gameEndUI.Show("Game Over");
     }
     public void Win()
     {
-        gameEndUI.Show("Ê¤ Àû");
+        gameEndUI.Show("Win");
     }
 
     public void OnRestart()

@@ -430,7 +430,7 @@ MeshRenderer:
   m_GameObject: {fileID: 5371797250299101587}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -499,3 +499,4 @@ MonoBehaviour:
   speed: 20
   hp: 100
   explosionPrefab: {fileID: 511233557589457572, guid: 642a7eff6b6bf8945a9329a74f9b88b3, type: 3}
+  rewardMoney: 50
