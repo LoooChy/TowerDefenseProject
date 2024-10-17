@@ -20,10 +20,9 @@ public class Enemy : MonoBehaviour
 
     private Transform modelTransform;
     private Vector3 lastPosition;
-
+    public float heightOffset = 0.5f; // 模型距离地面的高度
+    
     // Start is called before the first frame update
-
-
     void Start()
     {
         targetPosition = Waypoints.Instance.GetWaypoint(pointIndex);
@@ -32,34 +31,38 @@ public class Enemy : MonoBehaviour
         maxHP = hp;
         // 获取模型的Transform
         modelTransform = transform;
-        // 如果模型是当前游戏对象的子对象，使用：
-        // modelTransform = transform.GetChild(0);
-
-        // lastPosition = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 计算移动方向
-        Vector3 moveDirection = (targetPosition - transform.position).normalized;
-        
-        // 移动逻辑
+       
+        // 保持模型的 y 值为 heightOffset
+        transform.position = new Vector3(transform.position.x, heightOffset, transform.position.z);
+
+        // 创建一个不影响 y 坐标的目标位置，仅在 x 和 z 平面上移动
+        Vector3 targetPositionAdjusted = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+
+        // 计算移动方向（忽略 y 轴上的变化）
+        Vector3 moveDirection = (targetPositionAdjusted - transform.position).normalized;
+
+        // 执行移动逻辑
         transform.position += moveDirection * speed * Time.deltaTime;
 
-        // 让模型面向移动方向
+        // 让模型朝向移动方向（保持 y 轴的固定值）
         if (moveDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
             modelTransform.rotation = Quaternion.RotateTowards(modelTransform.rotation, toRotation, 720f * Time.deltaTime);
         }
 
-        // 检查是否到达目标点
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        // 检查是否到达目标点（忽略 y 轴的影响）
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), 
+                             new Vector3(targetPosition.x, 0, targetPosition.z)) < 0.1f)
         {
             MoveNextPoint();
         }
-        
 
     }
 

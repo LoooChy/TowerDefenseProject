@@ -1685,7 +1685,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.6261783, y: -0.009, z: -3.7378983}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4941152609969052951}
@@ -1754,9 +1754,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  hp: 100
+  hp: 500
   explosionPrefab: {fileID: 0}
-  rewardMoney: 50
+  rewardMoney: 100
+  heightOffset: 0.5
 --- !u!1 &154292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,7 +3048,7 @@ RectTransform:
   m_GameObject: {fileID: 3618384364799888149}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.044285, y: 0.044285, z: 0.044285}
+  m_LocalScale: {x: 0.04285, y: 0.04285, z: 0.04285}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7549854061708243919}

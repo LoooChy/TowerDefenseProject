@@ -655,9 +655,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  hp: 100
+  hp: 300
   explosionPrefab: {fileID: 0}
-  rewardMoney: 50
+  rewardMoney: 30
+  heightOffset: 0.5
 --- !u!1 &138270
 GameObject:
   m_ObjectHideFlags: 0

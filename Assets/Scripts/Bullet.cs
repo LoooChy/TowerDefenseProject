@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
-    public int damage = 50;
+    public int damage = 20;
     public float speed = 10;
 
     public GameObject bulletExplosionPrefab;

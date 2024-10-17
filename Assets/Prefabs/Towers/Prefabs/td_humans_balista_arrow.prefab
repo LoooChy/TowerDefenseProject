@@ -118,6 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe13668725f7a648aa88319cd47869f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 5
   speed: 30
   bulletExplosionPrefab: {fileID: 0}
