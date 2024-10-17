@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-// 计算移动方向
+        // 计算移动方向
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
         
         // 移动逻辑
