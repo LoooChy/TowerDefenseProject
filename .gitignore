@@ -1,0 +1,34 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+
+# Visual Studio / MonoDevelop generated files
+.vscode/
+.vs/
+*.csproj
+*.sln
+
+# Auto-generated VS/MD solution and project files
+ExportedObj/
+.consulo/
+*.pidb
+*.booproj
+*.userprefs
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+
+# Unity3D generated file on crash reports
+sysinfo.txt
+
+# Build results
+[Bb]uilds/
+
+# Crashlytics generated file
+crashlytics-build.properties
