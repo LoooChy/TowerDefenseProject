@@ -7,12 +7,15 @@ using UnityEngine.EventSystems;
 public class MapCube : MonoBehaviour {
     private GameObject tower;
     private BuildingData building;
-    
-    public GameObject buildEffect;
 
+    public bool isDisabled;
     private bool isUpgraded;
 
     public void OnMouseOver() {
+        if (isDisabled) {
+            return;
+        }
+        
         if (Input.GetMouseButtonDown(0)) {
             if (EventSystem.current.IsPointerOverGameObject()) return;
             if (tower) {
@@ -48,31 +51,33 @@ public class MapCube : MonoBehaviour {
 
         BuildManager.Instance.ChangeMoney(-building.cost);
 
-        tower = InstantiateTurret(building.prefab);
+        tower = Build(building.prefab);
     }
 
-    public void OnTurretUpgrade() {
+    public void OnBuildingUpgrade() {
         if (BuildManager.Instance.IsEnough(building.upgradeCost)) {
             isUpgraded = true;
             BuildManager.Instance.ChangeMoney(-building.upgradeCost);
             Destroy(tower);
-            tower = InstantiateTurret(building.upgradedPrefab);
+            tower = Build(building.upgradedPrefab);
         }
     }
 
-    public void OnTurretDestroy() {
-        Destroy(tower);
+    public void OnBuildingDestroy() {
+        if (building != null && tower != null) {
+            var cost = building.cost;
+            // return 70% of spent money
+            cost = (int)((float)cost * 0.7);
+            BuildManager.Instance.ChangeMoney(cost);
+            Destroy(tower);
+        }
+        
         building = null;
         tower = null;
         isUpgraded = false;
-        GameObject go = Instantiate(buildEffect, transform.position, Quaternion.identity);
-        Destroy(go, 2);
     }
 
-    private GameObject InstantiateTurret(GameObject prefab) {
-        GameObject turretGo = Instantiate(prefab, transform.position + Vector3.up * (float)0.5, Quaternion.identity);
-        GameObject go = Instantiate(buildEffect, transform.position, Quaternion.identity);
-        Destroy(go, 2);
-        return turretGo;
+    private GameObject Build(GameObject prefab) {
+        return Instantiate(prefab, transform.position + Vector3.up * (float)0.5, Quaternion.identity);
     }
 }

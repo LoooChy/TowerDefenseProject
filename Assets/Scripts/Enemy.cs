@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
     private int pointIndex = 0;
 
     private Vector3 targetPosition = Vector3.zero;
@@ -12,8 +11,7 @@ public class Enemy : MonoBehaviour
     public float speed = 4;
 
     public float hp = 100;
-    private float maxHP = 0;
-    public GameObject explosionPrefab;
+    private float maxHP;
 
     private Slider hpSlider;
     public int rewardMoney = 50;
@@ -21,23 +19,17 @@ public class Enemy : MonoBehaviour
     private Transform modelTransform;
     private Vector3 lastPosition;
     public float heightOffset = 0.5f; // 模型距离地面的高度
-    
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    void Start() {
         targetPosition = Waypoints.Instance.GetWaypoint(pointIndex);
         hpSlider = transform.Find("Canvas/HPSlider").GetComponent<Slider>();
         hpSlider.value = 1;
         maxHP = hp;
         // 获取模型的Transform
         modelTransform = transform;
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
+    void Update() {
         // 保持模型的 y 值为 heightOffset
         transform.position = new Vector3(transform.position.x, heightOffset, transform.position.z);
 
@@ -48,50 +40,44 @@ public class Enemy : MonoBehaviour
         Vector3 moveDirection = (targetPositionAdjusted - transform.position).normalized;
 
         // 执行移动逻辑
-        transform.position += moveDirection * speed * Time.deltaTime;
+        transform.position += moveDirection * (speed * Time.deltaTime);
 
         // 让模型朝向移动方向（保持 y 轴的固定值）
-        if (moveDirection != Vector3.zero)
-        {
+        if (moveDirection != Vector3.zero) {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            modelTransform.rotation = Quaternion.RotateTowards(modelTransform.rotation, toRotation, 720f * Time.deltaTime);
+            modelTransform.rotation =
+                Quaternion.RotateTowards(modelTransform.rotation, toRotation, 720f * Time.deltaTime);
         }
 
         // 检查是否到达目标点（忽略 y 轴的影响）
-        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), 
-                             new Vector3(targetPosition.x, 0, targetPosition.z)) < 0.1f)
-        {
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
+                new Vector3(targetPosition.x, 0, targetPosition.z)) < 0.1f) {
             MoveNextPoint();
         }
-
     }
 
-    private void MoveNextPoint()
-    {
+    private void MoveNextPoint() {
         pointIndex++;
-        if (pointIndex > (Waypoints.Instance.GetLength() - 1))
-        {
+        if (pointIndex > (Waypoints.Instance.GetLength() - 1)) {
             GameManager.Instance.Fail();
-            Die();return;
+            Die();
+            return;
         }
-        targetPosition = Waypoints.Instance.GetWaypoint(pointIndex);
 
+        targetPosition = Waypoints.Instance.GetWaypoint(pointIndex);
     }
-    void Die()
-    {
+
+    void Die() {
         BuildManager.Instance.ChangeMoney(rewardMoney);
         Destroy(gameObject);
         EnemySpawner.Instance.DecreateEnemyCount();
-        GameObject go= GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(go, 1);
     }
-    public void TakeDamage(float damage)
-    {
+
+    public void TakeDamage(float damage) {
         if (hp <= 0) return;
         hp -= damage;
-        hpSlider.value = (float)hp / maxHP;
-        if (hp <= 0)
-        {
+        hpSlider.value = hp / maxHP;
+        if (hp <= 0) {
             Die();
         }
     }

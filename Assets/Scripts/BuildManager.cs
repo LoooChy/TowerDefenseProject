@@ -67,10 +67,10 @@ public class BuildManager : MonoBehaviour {
     }
 
     public void OnTurretUpgrade() {
-        activeCube?.OnTurretUpgrade();
+        activeCube?.OnBuildingUpgrade();
     }
 
     public void OnTurretDestroy() {
-        activeCube?.OnTurretDestroy();
+        activeCube?.OnBuildingDestroy();
     }
 }
