@@ -11645,6 +11645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 184745781}
+  nextText: {fileID: 445302884}
 --- !u!1001 &1076587547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21806,6 +21807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78522d880d6fdaa48a6741f055d033bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: 2
   gameEndUI: {fileID: 1073532213}
 --- !u!1001 &2016544969
 PrefabInstance:

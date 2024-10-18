@@ -7,15 +7,17 @@ public class GameEndUI : MonoBehaviour
 {
     private Animator anim;
     public TextMeshProUGUI messageText;
+    public TextMeshProUGUI nextText;
 
     void Start()
     {
         anim = GetComponent<Animator>();
     }
 
-    public void Show(string message)
+    public void Show(string title, string next)
     {
-        messageText.text = message;
+        messageText.text = title;
+        nextText.text = next;
         anim.SetTrigger("show");
     }
 
