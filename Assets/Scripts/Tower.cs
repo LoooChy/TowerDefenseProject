@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour {
     public List<GameObject> enemyList = new List<GameObject>();
-
-
+    
     public GameObject bulletPrefab;
     public Transform bulletPosition;
     public float attackRate = 1;
     private float nextAttackTime;
-
+    public bool disabled = false;
+    
+    public ParticleSystem slowdownEffect;
+    public ParticleSystem disableEffect;
     public Transform head;
+    
+    private float originAttackRate;
+    private float slowdownRate;
+    private float slowdownDuration;
+
+    private void Start() {
+        originAttackRate = attackRate;
+    }
 
     private void Update() {
+        Slowdown();
         DirectionControl();
         Attack();
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Trigger: " + other.tag);
-
         if (other.CompareTag("Enemy")) {
             enemyList.Add(other.gameObject);
         }
@@ -32,17 +41,59 @@ public class Tower : MonoBehaviour {
         }
     }
 
-    protected void Attack() {
-        if (enemyList == null || enemyList.Count == 0) return;
-
-        if (Time.time > nextAttackTime) {
-            Transform target = GetTarget();
-            if (target) {
-                GameObject go = Instantiate(bulletPrefab, bulletPosition.position, Quaternion.identity);
-                go.GetComponent<Bullet>().SetTarget(target);
-                nextAttackTime = Time.time + attackRate;
-            }
+    public void ApplySlowdown(float rateMultiplier, float duration) {
+        attackRate = originAttackRate * rateMultiplier;
+        slowdownDuration = duration;
+        if (slowdownEffect) {
+            slowdownEffect.Play();    
         }
+    }
+
+    public void ApplyDisable() {
+        disabled = true;
+        if (disableEffect) {
+            disableEffect.Play();    
+        }
+    }
+    
+    private void Slowdown() {
+        if (slowdownDuration <= 0) {
+            return;
+        }
+
+        slowdownDuration -= Time.deltaTime;
+        if (slowdownDuration > 0) {
+            return;
+        }
+
+        slowdownDuration = 0;
+        attackRate = originAttackRate;
+        if (slowdownEffect) {
+            slowdownEffect.Stop();    
+        }
+    }
+
+    private void Attack() {
+        if (disabled) {
+            return;
+        }
+        
+        if (enemyList == null || enemyList.Count == 0) {
+            return;
+        }
+
+        if (Time.time < nextAttackTime) {
+            return;
+        }
+
+        var target = GetTarget();
+        if (!target) {
+            return;
+        }
+
+        var go = Instantiate(bulletPrefab, bulletPosition.position, Quaternion.identity);
+        go.GetComponent<Bullet>().SetTarget(target);
+        nextAttackTime = Time.time + attackRate;
     }
 
     private Transform GetTarget() {

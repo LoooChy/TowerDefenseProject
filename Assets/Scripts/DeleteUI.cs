@@ -23,7 +23,6 @@ public class DeleteUI : MonoBehaviour {
 
     public void OnDestroyButtonClick() {
         BuildManager.Instance.OnTurretDestroy();
-        BuildManager.Instance.ChangeMoney(30);
         Hide();
     }
 }

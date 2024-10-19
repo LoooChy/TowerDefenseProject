@@ -65,10 +65,9 @@ public class MapCube : MonoBehaviour {
 
     public void OnBuildingDestroy() {
         if (building != null && tower != null) {
-            var cost = building.cost;
             // return 70% of spent money
-            cost = (int)((float)cost * 0.7);
-            BuildManager.Instance.ChangeMoney(cost);
+            var cashback = (int)((float)building.cost * 0.7);
+            BuildManager.Instance.ChangeMoney(cashback);
             Destroy(tower);
         }
         
