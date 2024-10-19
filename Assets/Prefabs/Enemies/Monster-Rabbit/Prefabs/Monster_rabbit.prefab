@@ -732,11 +732,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3106b36290f024c8e0b1919828c40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 8
   hp: 100
-  explosionPrefab: {fileID: 0}
+  shield: 0
+  shieldEffect: {fileID: 0}
   rewardMoney: 10
   heightOffset: 0.5
+  autoRegen: 0
+  autoRegenTime: 0
+  autoRegenEffect: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  bulletPosition: {fileID: 0}
+  attackRate: 1
+  attackDistance: 10
 --- !u!114 &5142177133592275281
 MonoBehaviour:
   m_ObjectHideFlags: 0

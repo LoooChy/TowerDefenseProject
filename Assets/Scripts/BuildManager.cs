@@ -14,7 +14,7 @@ public class BuildManager : MonoBehaviour {
     public UpgradeUI upgradeUI;
     public DeleteUI deleteUI;
 
-    private int money = 200;
+    public int money = 200;
     private MapCube activeCube;
     private BuildingData selectedBuilding;
 

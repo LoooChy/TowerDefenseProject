@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour {
         StopCoroutine(spawnCoroutine);
     }
 
-    public void DecreateEnemyCount() {
+    public void DecEnemyCount() {
         if (enemyCount > 0) {
             enemyCount--;
         }
