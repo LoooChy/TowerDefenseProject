@@ -31,7 +31,6 @@ public class EnemySpawner : MonoBehaviour {
 
             ShowWaveMessage(currentWaveIndex);
 
-            //每一波更新，玩家血量恢复至满血
             PlayerController.Instance.Heal();
 
             for (int i = 0; i < wave.count; i++) {

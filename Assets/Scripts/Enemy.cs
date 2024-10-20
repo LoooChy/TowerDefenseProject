@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
-    //给玩家的伤害值
+    //Damage value for the player
     [SerializeField ]
     private int damage = 10;
 
@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour {
     public float shield = 100;
     public GameObject shieldEffect;
     public int rewardMoney = 50;
-    public float heightOffset = 0.5f; // 模型距离地面的高度
+    public float heightOffset = 0.5f; // The height of the model from the ground
 
     public float autoRegen;
     public float autoRegenTime;
@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour {
         hpSlider = transform.Find("Canvas/HPSlider").GetComponent<Slider>();
         hpSlider.value = 1;
         maxHP = hp;
-        // 获取模型的Transform
         modelTransform = transform;
     }
 
@@ -54,26 +53,25 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Move() {
-        // 保持模型的 y 值为 heightOffset
+        // Keep the model's y-value at heightOffset.
         transform.position = new Vector3(transform.position.x, heightOffset, transform.position.z);
 
-        // 创建一个不影响 y 坐标的目标位置，仅在 x 和 z 平面上移动
+        // Create a target position that does not affect the y-coordinate, only allowing movement on the x and z planes.
         Vector3 targetPositionAdjusted = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
 
-        // 计算移动方向（忽略 y 轴上的变化）
+        // Calculate the movement direction (ignoring changes in the y-axis).
         Vector3 moveDirection = (targetPositionAdjusted - transform.position).normalized;
 
-        // 执行移动逻辑
         transform.position += moveDirection * (speed * Time.deltaTime);
 
-        // 让模型朝向移动方向（保持 y 轴的固定值）
+        // Make the model face the movement direction (keeping the y-axis value fixed).
         if (moveDirection != Vector3.zero) {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
             modelTransform.rotation =
                 Quaternion.RotateTowards(modelTransform.rotation, toRotation, 720f * Time.deltaTime);
         }
 
-        // 检查是否到达目标点（忽略 y 轴的影响）
+        // Check if the target point has been reached (ignoring the influence of the y-axis).
         if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
                 new Vector3(targetPosition.x, 0, targetPosition.z)) < 0.1f) {
             MoveNextPoint();
@@ -225,7 +223,7 @@ public class Enemy : MonoBehaviour {
         }
         if (other.CompareTag("Player"))
         {
-            //给玩家造成伤害
+            //Deal damage to the player.
             other.GetComponentInParent<PlayerController>().TakeDamage(damage);
         }
     }
