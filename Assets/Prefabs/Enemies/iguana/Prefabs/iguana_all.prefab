@@ -1449,12 +1449,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3106b36290f024c8e0b1919828c40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 15
   speed: 4
   hp: 200
   shield: 100
   shieldEffect: {fileID: 5271988299120231874}
   rewardMoney: 20
   heightOffset: 0.5
+  autoRegen: 0
+  autoRegenTime: 0
+  autoRegenEffect: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  bulletPosition: {fileID: 0}
+  attackRate: 1
+  attackDistance: 10
 --- !u!1 &135060
 GameObject:
   m_ObjectHideFlags: 0

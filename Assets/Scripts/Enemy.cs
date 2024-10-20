@@ -5,6 +5,11 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
+
+    //给玩家的伤害值
+    [SerializeField ]
+    private int damage = 10;
+
     public float speed = 4;
     public float hp = 100;
     public float shield = 100;
@@ -30,7 +35,7 @@ public class Enemy : MonoBehaviour {
     public float attackRate = 1;
     public float attackDistance = 10;
     private float nextAttackTime;
-
+    //[SerializeField ]
     private List<GameObject> towerList = new List<GameObject>();
 
     void Start() {
@@ -217,6 +222,11 @@ public class Enemy : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Tower")) {
             towerList.Add(other.gameObject);
+        }
+        if (other.CompareTag("Player"))
+        {
+            //给玩家造成伤害
+            other.GetComponentInParent<PlayerController>().TakeDamage(damage);
         }
     }
 

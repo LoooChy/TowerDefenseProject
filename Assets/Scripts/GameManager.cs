@@ -7,15 +7,22 @@ public class GameManager : MonoBehaviour {
     public int nextScene = 0;
 
     public static GameManager Instance { get; private set; }
+    public bool IsPlayer { get => isPlayer; set => isPlayer = value; }
 
     public GameEndUI gameEndUI;
 
     private bool failed;
 
+    bool isPlayer = false;
+
     private void Awake() {
         Instance = this;
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+            isPlayer = !isPlayer;
+    }
 
     public void Fail() {
         failed = true;
