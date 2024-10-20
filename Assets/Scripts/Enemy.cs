@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour {
     public float attackRate = 1;
     public float attackDistance = 10;
     private float nextAttackTime;
-    //[SerializeField ]
+
     private List<GameObject> towerList = new List<GameObject>();
 
     void Start() {

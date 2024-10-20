@@ -97,8 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe13668725f7a648aa88319cd47869f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 20
   speed: 20
+  slowDownMultiplier: 0
+  slowDownDuration: 0
+  aoeDamage: 10
+  aoeDistance: 10
   bulletExplosionPrefab: {fileID: 100010, guid: 87698b9d467306440a17655d9c528f3a, type: 3}
 --- !u!135 &3255700204377372099
 SphereCollider:
@@ -119,5 +123,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1512945
+  m_Radius: 10
   m_Center: {x: 0, y: 0.0463745, z: -0.0000010021031}
