@@ -12,25 +12,49 @@ public class GameManager : MonoBehaviour {
     public GameEndUI gameEndUI;
 
     private bool failed;
+    private bool ended;
+    private bool escaping;
 
-    bool isPlayer = false;
+    bool isPlayer;
 
     private void Awake() {
         Instance = this;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab)) {
             isPlayer = !isPlayer;
+            return;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            EscapeMenu();
+        }
     }
 
+    private void EscapeMenu() {
+        if (ended) {
+            return;
+        }
+        
+        escaping = !escaping;
+        if (escaping) {
+            gameEndUI.Show("Do you wanna surrender?", "Restart");
+        }
+        else {
+            gameEndUI.Hide();
+        }
+    }
+    
     public void Fail() {
+        ended = true;
         failed = true;
         EnemySpawner.Instance.StopSpawn();
         gameEndUI.Show("Game Over", "Restart");
     }
 
     public void Win() {
+        ended = true;
         var nextText = "Restart";
         if (nextScene > 0) {
             nextText = "Next Level";
@@ -40,11 +64,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnRestart() {
-        if (!failed && nextScene > 0) {
+        if (ended && !failed && nextScene > 0) {
             SceneManager.LoadScene(nextScene);
             return;
         }
 
+        ended = false;
         failed = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

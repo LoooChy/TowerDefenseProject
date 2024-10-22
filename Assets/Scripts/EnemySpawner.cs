@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour {
     }
     
     void Start() {
+        
         spawnCoroutine = StartCoroutine(SpawnEnemy());
     }
 
