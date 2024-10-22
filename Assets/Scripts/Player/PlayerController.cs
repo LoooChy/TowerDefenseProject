@@ -12,11 +12,9 @@ public class PlayerController : MonoBehaviour {
     private Animator animator;
 
     public Image healthBar;
-    public static PlayerController Instance;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
     private void Start() {
-        Instance = this;
         health = maxHealth;
         animator = GetComponent<Animator>();
         UpdateHealthBar();

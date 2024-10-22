@@ -11,7 +11,8 @@ public class EnemySpawner : MonoBehaviour {
     public TextMeshProUGUI waveText;
     public Transform startPoint;
     public List<Wave> waveList;
-
+    public PlayerController player;
+    
     private int enemyCount ;
     private int currentWaveIndex ;
     private Coroutine spawnCoroutine;
@@ -21,19 +22,20 @@ public class EnemySpawner : MonoBehaviour {
     }
     
     void Start() {
-        
         spawnCoroutine = StartCoroutine(SpawnEnemy());
     }
 
     IEnumerator SpawnEnemy() {
-        for (int j = 0; j < waveList.Count; j++) {
+        for (var j = 0; j < waveList.Count; j++) {
             Wave wave = waveList[j];
             currentWaveIndex = j + 1;
 
             ShowWaveMessage(currentWaveIndex);
 
-            PlayerController.Instance.Heal();
-
+            if (player) {
+                player.Heal();    
+            }
+            
             for (int i = 0; i < wave.count; i++) {
                 Instantiate(wave.enemyPrefab, startPoint.position, Quaternion.identity);
                 enemyCount++;
