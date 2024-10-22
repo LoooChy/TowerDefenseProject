@@ -23,7 +23,6 @@ public class CameraController : MonoBehaviour {
         if (GameManager.Instance.IsPlayer) {
             // save camera position
             if (lastState != GameManager.Instance.IsPlayer) {
-                Debug.Log("save camera" + transform.position);
                 strategicCamera = transform.position;
             }
 
@@ -36,8 +35,6 @@ public class CameraController : MonoBehaviour {
         else {
             // restore camera position
             if (lastState != GameManager.Instance.IsPlayer) {
-                Debug.Log("restore camera" + strategicCamera);
-
                 transform.position = strategicCamera;
                 transform.rotation = Quaternion.Euler(45, 0, 0);
             }
